@@ -1,0 +1,1 @@
+const db=require('../../db/firebase'); module.exports=async (_,res)=>{const accounts=await db.getAccounts(); res.json({status:'ok',firebase:db.isFirebaseReady(),accountsTotal:accounts.length,accountsAvailable:accounts.filter(a=>a.enabled!==false).length,uptime:Math.round(process.uptime())});};

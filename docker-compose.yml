@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  smtp-proxy:
+    build: .
+    restart: unless-stopped
+    ports: ["2525:2525","3000:3000"]
+    env_file: .env
+    volumes: ["./stats.json:/app/stats.json"]

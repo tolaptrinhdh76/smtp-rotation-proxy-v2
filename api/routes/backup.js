@@ -1,0 +1,2 @@
+const r=require('express').Router(); const db=require('../../db/firebase'); const {mask}=require('./helpers');
+r.get('/backup',async(_,res)=>{const [accounts,rules,stats,settings]=await Promise.all([db.getAccounts(),db.getRules(),db.getStats(),db.getSettings()]); const body={accounts:accounts.map(a=>({...a,auth:{...a.auth,pass:mask(a.auth?.pass)}}),rules,stats,settings}; res.setHeader('Content-Disposition',`attachment; filename="smtp-backup-${new Date().toISOString().slice(0,10)}.json"`); res.json({success:true,data:body});}); module.exports=r;

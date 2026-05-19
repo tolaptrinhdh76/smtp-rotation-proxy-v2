@@ -1,0 +1,6 @@
+@baseUrl = http://localhost:3000
+@apiSecret = {{$dotenv API_SECRET}}
+GET {{baseUrl}}/api/health
+###
+GET {{baseUrl}}/api/accounts
+X-API-Secret: {{apiSecret}}

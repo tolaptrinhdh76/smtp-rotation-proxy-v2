@@ -1,0 +1,10 @@
+smtp.yourdomain.com {
+    @ui {
+        not path /api/*
+        not path /health
+    }
+    basicauth @ui {
+        admin $2a$14$...your-bcrypt-hash-here...
+    }
+    reverse_proxy localhost:3000
+}
